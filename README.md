@@ -59,9 +59,9 @@ class MyComponent extends React.Component {
 
 ## Benefits
 
-`subscribeWhileMounted` does three things for you:
+The primary benefit of `subscribeWhileMounted` is that you can write [less, more readable code](LESS_CODE.md) to subscribe to the store. It does three imporatant things for you to make this possible:
 
-* Ensures the component has an initial state: the callback is always called at least once before `subscribeWhileMounted` returns.
+* It ensures the component has an initial state: the callback is always called at least once before `subscribeWhileMounted` returns.
     * Removes the need for explicitly creating an initial state
     * You don't have to worry about the order in which you subscribe and dispatch acitions that trigger state update.
 * It lets you choose which properties you want to listen for updates to (one, many or all properties)
@@ -69,12 +69,10 @@ class MyComponent extends React.Component {
 * It automatically unsubscribes when `componentWillUnmount`
     * You don't need to write that extra code to make sure your components unsubscribe when they unmount.
 
-These features means that you can write less, more readable code to subscribe to the store.
-
-As a side effetc, because subscribing to the store is typically a bit tedious, we often pass the state as props between components. The simpler syntax removes the need for that.
+Because subscribing to the store with vanilla Redux is a bit tedious, we often pass some store state as props between components. The simpler syntax of `subscribeWhileMounted` removes the need for that, an can thus have some positive side effects:
 
 * By not passing store state as props from component to component we reduce noise in the code, making the remaining code more readable.
-* By explicitly listening to the (relevant parts of) the store in the components that need it, we express a more explicit relationship between the definition of the data (in the store) and the presetation of it (in the React component).
+* By explicitly listening to (the relevant parts of) the store in the components that need it, we express a more explicit relationship between the definition of the data (in the store) and the presetation of it (in the React component).
 * You might also decide to move more state management into the store/actions, which is a great thing, because that is what Redux is for!
 
 
